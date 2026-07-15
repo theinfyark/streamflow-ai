@@ -1,0 +1,16 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2026-07-15
+
+### Added
+- Unified TypeScript streaming SDK for OpenAI, Azure OpenAI, Anthropic, Gemini, Ollama, Groq, DeepSeek, Mistral, and OpenRouter
+- Streaming chat, tool calling deltas, JSON mode, and image content parts
+- Retry with backoff, timeouts, AbortController support
+- Middleware pipeline and event hooks (`request`, `chunk`, `response`, `error`, `retry`)
+- Token usage aggregation and estimated cost calculation
+- Typed errors (`StreamflowError`, `TimeoutError`, `AbortError`)

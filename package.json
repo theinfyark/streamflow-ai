@@ -1,6 +1,6 @@
 {
   "name": "streamflow-ai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unified TypeScript streaming SDK for OpenAI, Azure OpenAI, Anthropic, Gemini, Ollama, Groq, DeepSeek, Mistral, and OpenRouter.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -44,7 +44,12 @@
     "openrouter",
     "groq",
     "deepseek",
-    "mistral"
+    "mistral",
+    "chatgpt",
+    "claude",
+    "ai-sdk",
+    "llm-client",
+    "chat-completion"
   ],
   "author": "Anil Kumar <anilachary67@gmail.com>",
   "license": "MIT",

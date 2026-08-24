@@ -32,9 +32,9 @@ const OPENAI_COMPATIBLE = new Set([
 function mergeUsage(a?: TokenUsage, b?: TokenUsage): TokenUsage | undefined {
   if (!a && !b) return undefined;
   return {
-    promptTokens: Math.max(a?.promptTokens ?? 0, b?.promptTokens ?? 0),
-    completionTokens: Math.max(a?.completionTokens ?? 0, b?.completionTokens ?? 0),
-    totalTokens: Math.max(a?.totalTokens ?? 0, b?.totalTokens ?? 0),
+    promptTokens: b?.promptTokens ?? a?.promptTokens ?? 0,
+    completionTokens: b?.completionTokens ?? a?.completionTokens ?? 0,
+    totalTokens: b?.totalTokens ?? a?.totalTokens ?? 0,
   };
 }
 

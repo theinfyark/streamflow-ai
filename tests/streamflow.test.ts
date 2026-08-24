@@ -185,6 +185,32 @@ describe("streamflow-ai", () => {
     }
   });
 
+  it("prefers latest usage chunk over Math.max", async () => {
+    const body = [
+      'data: {"choices":[{"delta":{"content":"Hi"}}],"usage":{"prompt_tokens":100,"completion_tokens":1,"total_tokens":101}}',
+      "",
+      'data: {"choices":[{"delta":{"content":""},"finish_reason":"stop"}],"usage":{"prompt_tokens":3,"completion_tokens":2,"total_tokens":5}}',
+      "",
+      "data: [DONE]",
+      "",
+    ].join("\n");
+
+    const ai = new Streamflow({
+      provider: "openai",
+      apiKey: "test",
+      model: "gpt-4o-mini",
+      fetch: mockFetch(body),
+      retry: false,
+    });
+
+    const result = await ai.chat({
+      messages: [{ role: "user", content: "Hi" }],
+    });
+    expect(result.usage?.promptTokens).toBe(3);
+    expect(result.usage?.completionTokens).toBe(2);
+    expect(result.usage?.totalTokens).toBe(5);
+  });
+
   it("parses SSE and estimates cost", async () => {
     const frames: string[] = [];
     for await (const f of parseSSE(
